@@ -15,6 +15,6 @@ public class GetAllRooms {
 
 
     public List<Room> execute() {
-        return null;
+        return this.roomProvider.getAll();
     }
 }

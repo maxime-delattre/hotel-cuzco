@@ -16,7 +16,7 @@ public class RoomTest {
         var actualString = room.prettyPrintDetails();
 
         //Then
-        var expectedString = "| 2 | 101 | belle chambre exposée sud | 2 guests |";
+        var expectedString = "|   2   | 101  | belle chambre exposée sud  | 2 guests |";
 
         assertThat(actualString).isEqualTo(expectedString);
     }

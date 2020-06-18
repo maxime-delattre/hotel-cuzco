@@ -18,8 +18,6 @@ class GetAllRoomsTest {
     @Mock
     private RoomProvider roomProvider;
 
-    private GetAllRooms getAllRooms = new GetAllRooms(roomProvider);
-
     @Test
     void should_return_all_rooms() {
     	// arrange
@@ -27,8 +25,10 @@ class GetAllRoomsTest {
         var room2 = new Room(201, 2, "red room", 4);
         when(this.roomProvider.getAll()).thenReturn(List.of(room1, room2));
 
+        var getAllRooms = new GetAllRooms(roomProvider);
+
     	// act
-        var roomsObtained = this.getAllRooms.execute();
+        var roomsObtained = getAllRooms.execute();
 
     	// assert
         var room1Expected = new Room(101, 1, "blue room", 2);
