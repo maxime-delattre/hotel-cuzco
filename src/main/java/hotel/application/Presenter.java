@@ -3,23 +3,26 @@ package hotel.application;
 import java.util.stream.Collectors;
 
 import hotel.core.usecases.GetAllRooms;
+import hotel.core.usecases.GetAvailableRooms;
 
 public class Presenter {
 
-    private final GetAllRooms getAllRooms;
-
-    public Presenter(GetAllRooms getAllRooms) {
-        this.getAllRooms = getAllRooms;
+    public Presenter() {
     }
 
-    public String printRooms() {
+    public String printRooms(GetAllRooms getAllRooms) {
 
-        return "| Floor | Room | Description                                                                | Capacity |\n" +
-        "|:-----:|:----:|----------------------------------------------------------------------------|:--------:|\n" + 
-        this.getAllRooms.execute()
-            .stream()
-            .map(room -> room.prettyPrintDetails())
-            .collect(Collectors.joining("\n"));
+        return 
+            "| Floor | Room | Description                                                                | Capacity |\n" +
+            "|:-----:|:----:|----------------------------------------------------------------------------|:--------:|\n" + 
+            getAllRooms.execute()
+                .stream()
+                .map(room -> room.prettyPrintDetails())
+                .collect(Collectors.joining("\n"));
+    }
+
+    public String printAvailbaleRooms(GetAvailableRooms getAvailableRooms) {
+        return null;
     }
 
 

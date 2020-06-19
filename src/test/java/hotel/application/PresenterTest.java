@@ -8,9 +8,11 @@ import org.mockito.Mock;
 
 import hotel.core.domain.Room;
 import hotel.core.usecases.GetAllRooms;
+import hotel.core.usecases.GetAvailableRooms;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @ExtendWith(MockitoExtension.class)
@@ -19,8 +21,11 @@ class PresenterTest {
     @Mock
     private GetAllRooms getAllRooms;
 
+    @Mock
+    private GetAvailableRooms getAvailableRooms;
+
     @Test
-    void should_display_print_rooms() {
+    void should_return_print_rooms_as_string() {
         // arrange
         var room1 = new Room(101, 1, "blue room", 2);
         var room2 = new Room(201, 2, "red room", 4);
@@ -37,4 +42,20 @@ class PresenterTest {
         assertThat(presenter.printRooms()).isEqualTo(expectedPrint);
     }
 
+    @Test
+    void should_return_available_rooms_as_string() {
+        // Given
+        LocalDate startDate = LocalDate.of(2020, 6, 20);
+        LocalDate endDate = LocalDate.of(2020, 6, 30);
+        int passengerNumber = 3;
+
+        var room1 = new Room(101, 1, "blue room", 2);
+        var room2 = new Room(201, 2, "red room", 4);
+        when(this.getAvailableRooms.execute(startDate, endDate, passengerNumber)).thenReturn(List.of(room1, room2));
+
+        // When
+        var presenter = new Presenter(this.getAvailableRooms);
+
+        //Then
+    }
 }
