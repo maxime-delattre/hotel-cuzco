@@ -1,5 +1,6 @@
 package hotel.infrastructure;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import hotel.core.domain.Room;
@@ -13,5 +14,10 @@ public class HotelRepository implements RoomProvider {
         return rooms;
     }
 
-    
+    @Override
+    public List<Room> getAvailableRooms(LocalDate startDate, LocalDate endDate, int passengerNumber) {
+        return null;
+    }
+
+
 }
