@@ -8,15 +8,16 @@ import hotel.core.usecases.ports.RoomProvider;
 
 public class HotelRepository implements RoomProvider {
 
+
+
     @Override
     public List<Room> getAll() {
-        List<Room> rooms = List.of(new Room(101, 2, "black room", 2), new Room(102, 1, "green room", 4));
-        return rooms;
+        return List.of(new Room(101, 2, "black room", 2), new Room(102, 1, "green room", 4));
     }
 
     @Override
     public List<Room> getAvailableRooms(LocalDate startDate, LocalDate endDate, int passengerNumber) {
-        return null;
+        return List.of(new Room(101, 2, "black room", 2), new Room(102, 1, "green room", 4));
     }
 
 

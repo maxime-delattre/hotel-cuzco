@@ -8,6 +8,8 @@ import java.util.List;
 
 public class GetAvailableRooms {
 
+    public static final int MINIMUM_ALLOWED_NIGHTS = 1;
+
     private RoomProvider roomProvider;
 
     public GetAvailableRooms(RoomProvider roomProvider) {
@@ -16,6 +18,10 @@ public class GetAvailableRooms {
 
 
     public List<Room> execute(LocalDate startDate, LocalDate endDate, int passengerNumber) {
+        if (startDate.equals(endDate) || endDate.isBefore(startDate)) {
+            endDate = startDate.plusDays(MINIMUM_ALLOWED_NIGHTS);
+        }
+
         return this.roomProvider.getAvailableRooms(startDate, endDate, passengerNumber);
     }
 }
