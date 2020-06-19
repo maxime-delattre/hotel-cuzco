@@ -1,29 +1,24 @@
 package hotel.application;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
+import hotel.core.domain.Room;
 import hotel.core.usecases.GetAllRooms;
 import hotel.core.usecases.GetAvailableRooms;
 
-public class Presenter {
+public class RoomsPresenter {
 
-    public Presenter() {
+    public RoomsPresenter() {
     }
 
-    public String printRooms(GetAllRooms getAllRooms) {
-
+    public String printRooms(List<Room> rooms) {
         return 
             "| Floor | Room | Description                                                                | Capacity |\n" +
             "|:-----:|:----:|----------------------------------------------------------------------------|:--------:|\n" + 
-            getAllRooms.execute()
+            rooms
                 .stream()
-                .map(room -> room.prettyPrintDetails())
+                .map(Room::prettyPrintDetails)
                 .collect(Collectors.joining("\n"));
     }
-
-    public String printAvailbaleRooms(GetAvailableRooms getAvailableRooms) {
-        return null;
-    }
-
-
 }
